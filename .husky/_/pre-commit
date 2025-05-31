@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+cd "psd-next-app"
+
+echo "Running pre-commit hook..."
+npm test
+npx lint-staged
+echo "Pre-commit hook completed successfully."
