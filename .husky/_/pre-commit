@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+cd "psd-next-app" || exit 1
+
+echo "Running pre-commit hook..."
+
+# Run lint-staged and check for errors
+npx lint-staged || exit 1
+
+# Run type-check and check for errors
+npm run type-check || exit 1
+
+# Run tests and check for errors
+npm test -- --passWithNoTests || exit 1
+
+echo "Pre-commit hook completed successfully."
