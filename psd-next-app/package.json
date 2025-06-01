@@ -9,7 +9,6 @@
     "test": "jest",
     "lint": "next lint",
     "format": "prettier --write .",
-    "prepare": "cd .. && husky install psd-next-app/.husky",
     "type-check": "tsc"
   },
   "lint-staged": {
