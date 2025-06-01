@@ -2,7 +2,7 @@ import {
   createStorefrontApiClient,
   StorefrontApiClient,
 } from '@shopify/storefront-api-client';
-import { getStorefrontClient } from './client';
+import { getStorefrontClient } from '@/app/services/storefront/client';
 
 jest.mock('@shopify/storefront-api-client');
 
@@ -31,7 +31,10 @@ describe('Shopify Storefront Client', () => {
   });
 
   test('creates client with environment variables', () => {
-    expect(getStorefrontClient()).toBeDefined();
+    const client = getStorefrontClient();
+    expect(client).toBe(mockClient);
+
+    expect(createStorefrontApiClient).toHaveBeenCalledTimes(1);
 
     expect(createStorefrontApiClient).toHaveBeenCalledWith({
       storeDomain: 'my-shop.myshopify.com',
