@@ -2,7 +2,7 @@ import {
   createStorefrontApiClient,
   StorefrontApiClient,
 } from '@shopify/storefront-api-client';
-import { getStorefrontClient } from '@/app/services/storefront/client';
+import { getStorefrontClient } from '@/app/storefront/client';
 
 jest.mock('@shopify/storefront-api-client');
 
@@ -13,7 +13,6 @@ describe('Shopify Storefront Client', () => {
     mockClient = {
       someMethod: jest.fn(),
     } as unknown as jest.Mocked<StorefrontApiClient>;
-
     (
       createStorefrontApiClient as jest.MockedFunction<
         typeof createStorefrontApiClient

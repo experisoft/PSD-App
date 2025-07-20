@@ -1,0 +1,24 @@
+import { getStorefrontClient } from '@/app/storefront/client';
+
+export const graphQLRequest = async (query: string) => {
+  const client = getStorefrontClient();
+
+  try {
+    const { data, errors, extensions } = await client.request(query);
+
+    if (errors) {
+      console.error('GraphQL errors:', errors);
+      throw new Error('Failed to fetch data from GraphQL');
+    }
+
+    if (extensions?.cost?.throttleStatus?.maximumAvailable === 0) {
+      console.warn('API rate limit exceeded');
+      throw new Error('API rate limit exceeded');
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error fetching shop details:', error);
+    throw new Error('Failed to fetch shop details');
+  }
+};

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { get_shop_details } from '@/app/services/storefront/client';
+import { getShopDetails } from '@/app/storefront/queries/getShopDetails';
 
 const StorefrontStatusPage = () => {
   const shopDetails = useState({
@@ -19,7 +19,7 @@ const StorefrontStatusPage = () => {
   useEffect(() => {
     const fetchShopDetails = async () => {
       try {
-        const details = await get_shop_details();
+        const details = await getShopDetails();
         shopDetails[1](details);
       } catch (err) {
         console.error('Error fetching shop details:', err);
