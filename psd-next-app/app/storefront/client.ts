@@ -12,13 +12,14 @@ export const getStorefrontClient = () => {
       );
     }
 
-    const client = createStorefrontApiClient({
+    const CLIENT_PARAMS = {
       storeDomain: process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || '',
       apiVersion: process.env.NEXT_PUBLIC_SHOPIFY_API_VERSION || '',
       publicAccessToken:
         process.env.NEXT_PUBLIC_SHOPIFY_PUBLIC_ACCESS_TOKEN || '',
-    });
+    };
 
+    const client = createStorefrontApiClient(CLIENT_PARAMS);
     return client;
   } catch (error) {
     throw error;
