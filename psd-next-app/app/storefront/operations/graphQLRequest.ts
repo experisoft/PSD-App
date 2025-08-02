@@ -22,7 +22,7 @@ export const graphQLRequest = async <T>(query: string): Promise<T> => {
 
     return data;
   } catch (error) {
-    console.error('Error fetching shop details:', error);
-    throw new Error('Failed to fetch shop details');
+    console.error('GraphQL request error:', error);
+    throw new Error('Failed to execute GraphQL request');
   }
 };
