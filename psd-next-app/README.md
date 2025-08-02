@@ -1,6 +1,23 @@
 # PSD e-commerce  
 
-> Pre-commit checks: [Husky](https://typicode.github.io/husky/) is used to run automated checks before a commit succeeds. Use git in the terminal for more detail when a commit fails.  
+> Pre-commit checks: [Husky](https://typicode.github.io/husky/) is used to run automated checks before a commit succeeds. Use git in the terminal for more detail when a commit fails.
+
+## Getting started
+
+Set up environment variables: use [.env.example](.env.example) as a template for a new [.env.local](.env.local)
+
+Install and set up scripts:
+```bash
+npm i
+npm run graphql-codegen # generate shopify api types for tsc
+npm run build
+```
+
+Starting in development:
+```bash
+npm run dev
+```
+
 ## Scripts
 
 `npm run dev` start application with hot reload
