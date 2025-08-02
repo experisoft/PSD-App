@@ -1,10 +1,14 @@
 import { getStorefrontClient } from '@/app/storefront/client';
 
-export const graphQLRequest = async (query: string) => {
+export const graphQLRequest = async <T>(query: string): Promise<T> => {
   const client = getStorefrontClient();
 
   try {
     const { data, errors, extensions } = await client.request(query);
+
+    if (!data) {
+      throw new Error('No data returned from GraphQL request');
+    }
 
     if (errors) {
       console.error('GraphQL errors:', errors);

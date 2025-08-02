@@ -1,32 +1,29 @@
 import { graphQLRequest } from '@/app/storefront/operations/graphQLRequest';
+import { gql } from 'graphql-request';
+import { GetShopDetailsQuery } from '@/types/admin.generated';
 
-const REQUEST_QUERY = `
-    query getShopDetails{
-      shop {
-        name
-        primaryDomain{
-          host
-          url
-        }
-        paymentSettings{
-          currencyCode
-          acceptedCardBrands
-          enabledPresentmentCurrencies
-        }
+const REQUEST_QUERY = gql`
+  #graphql
+  query getShopDetails {
+    shop {
+      name
+      primaryDomain {
+        host
+        url
       }
     }
+  }
 `;
 
-export const getShopDetails = async () => {
+export const getShopDetails = async (): Promise<
+  GetShopDetailsQuery['shop']
+> => {
   try {
-    const data = await graphQLRequest(REQUEST_QUERY);
-    if (!data || !data.shop) {
-      throw new Error('No shop details found');
-    }
-
-    return data.shop;
+    const { shop }: GetShopDetailsQuery =
+      await graphQLRequest<GetShopDetailsQuery>(REQUEST_QUERY);
+    return shop;
   } catch (error) {
     console.error('Error fetching shop details:', error);
-    throw new Error('Failed to fetch shop details');
+    throw error;
   }
 };

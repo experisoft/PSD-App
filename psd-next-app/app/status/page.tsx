@@ -2,16 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { getShopDetails } from '@/app/storefront/queries/getShopDetails';
+import { GetShopDetailsQuery } from '@/types/admin.generated';
 
 const StorefrontStatusPage = () => {
-  const shopDetails = useState({
+  const [shopDetails, setShopDetails] = useState<GetShopDetailsQuery['shop']>({
     name: '',
     primaryDomain: { host: '', url: '' },
-    paymentSettings: {
-      currencyCode: '',
-      acceptedCardBrands: [],
-      enabledPresentmentCurrencies: [],
-    },
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +16,7 @@ const StorefrontStatusPage = () => {
     const fetchShopDetails = async () => {
       try {
         const details = await getShopDetails();
-        shopDetails[1](details);
+        setShopDetails(details);
       } catch (err) {
         console.error('Error fetching shop details:', err);
         setError('Failed to load shop details');
@@ -30,7 +26,7 @@ const StorefrontStatusPage = () => {
     };
 
     fetchShopDetails();
-  }, [shopDetails]);
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -41,17 +37,9 @@ const StorefrontStatusPage = () => {
   return (
     <div>
       <h1>Storefront Client Details</h1>
-      <p>Name: {shopDetails[0].name}</p>
-      <p>Primary Domain: {shopDetails[0].primaryDomain.host}</p>
-      <p>Currency Code: {shopDetails[0].paymentSettings.currencyCode}</p>
-      <p>
-        Accepted Card Brands:{' '}
-        {shopDetails[0].paymentSettings.acceptedCardBrands.join(', ')}
-      </p>
-      <p>
-        Enabled Presentment Currencies:{' '}
-        {shopDetails[0].paymentSettings.enabledPresentmentCurrencies.join(', ')}
-      </p>
+      <p>Name: {shopDetails.name}</p>
+      <p>Primary Domain: {shopDetails.primaryDomain.host}</p>
+      <p>URL: {shopDetails.primaryDomain.url}</p>
     </div>
   );
 };

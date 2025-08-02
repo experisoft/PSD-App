@@ -15,6 +15,11 @@ const eslintConfig = [
     'next/typescript',
     'plugin:prettier/recommended',
   ),
+  {
+    files: ['types/**/*.ts', 'types/**/*.tsx', 'types/**/*.d.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
 ];
-
 export default eslintConfig;
