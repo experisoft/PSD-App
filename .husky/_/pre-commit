@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-cd "psd-next-app" || exit 1
-
 echo "Running pre-commit hook..."
 
 # Run lint-staged and check for errors
