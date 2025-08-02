@@ -1,4 +1,4 @@
-import { graphQLRequest } from '@/app/storefront/operations/GraphQLRequest';
+import { graphQLRequest } from '@/app/storefront/operations/graphQLRequest';
 
 const REQUEST_QUERY = `
     query getShopDetails{

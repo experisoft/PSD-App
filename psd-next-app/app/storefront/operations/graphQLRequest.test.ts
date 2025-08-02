@@ -1,6 +1,6 @@
 import { StorefrontApiClient } from '@shopify/storefront-api-client';
 import { getStorefrontClient } from '@/app/storefront/client';
-import { graphQLRequest } from '@/app/storefront/operations/GraphQLRequest';
+import { graphQLRequest } from '@/app/storefront/operations/graphQLRequest';
 
 const REQUEST_QUERY = `test`;
 const EXPECTED_RESPONSE_DATA = {

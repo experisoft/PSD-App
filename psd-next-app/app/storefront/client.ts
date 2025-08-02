@@ -19,7 +19,6 @@ export const getStorefrontClient = () => {
         process.env.NEXT_PUBLIC_SHOPIFY_PUBLIC_ACCESS_TOKEN || '',
     });
 
-    console.log('Storefront client created successfully');
     return client;
   } catch (error) {
     throw error;

@@ -18,7 +18,6 @@ describe('Shopify Storefront Client', () => {
         typeof createStorefrontApiClient
       >
     ).mockImplementation(() => {
-      console.log('mock createStorefrontApiClient called');
       return mockClient;
     });
   });
